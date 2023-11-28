@@ -1,4 +1,4 @@
-"id","name","vehicle_type","vehicle_color","vehicle_plate","created_at"
+"id","tenant_name","vehicle_name","vehicle_color","plate_number","created_at"
 "0c221ecd-7f3e-43a1-ab2a-76183798b9a1","Ken","Nissan X-Trail","Grey","KCX623S","2023-09-19 15:58:09.076265+03"
 "267d4d28-5f3a-4cee-abe4-c1d5ac98ea35","Dan Kiki","Blue Alfie","Blue","ZG32540","2023-09-19 15:58:09.076265+03"
 "39f66cd7-c58d-4cc0-81a7-aaa6633e2433","Aunt Janice","Honda CRV","Black","KBS826N","2023-09-19 15:58:09.076265+03"

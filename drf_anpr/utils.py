@@ -8,13 +8,9 @@ class InputData:
         self.source = os.path.join(self.basepath, "data", "member_registry.csv")
             
     def read_csv(self):
-        # with open(self.source, 'r') as doc:
-        #     csvread = csv.DictReader(doc, delimiter=',')
-        #     for row in csvread:
-                # print(row)
-        df = pd.read_csv(self.source)
-        df_new = df[['name']]
-        print(df_new)
 
-if __name__ == "__main__":
-    InputData().read_csv()
+        df = pd.read_csv(self.source)
+        df_new = df[['plate_number', 'vehicle_color', 'vehicle_name', 'tenant_name']]
+        data_list = df_new.to_dict(orient='records')
+        return data_list
+

@@ -3,6 +3,34 @@
 {% block content %}
 <!-- Add main content here -->
 <div class="row">
-    <p>Home</p>
+    <h4>Home</h4>
+    <div class="main-vehicles">
+        <div class="row">
+
+        </div>
+
+        <!-- # table  -->
+        <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                {% for field in vehicle_field_names %}
+                <th scope="col">{{field}}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+            {% for data in vehicles_data %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td> {{data.vehicle_name}} </td>
+                <td> {{data.plate_number}} </td>
+                <td> {{data.vehicle_color}} </td>
+                <td>{{data.tenant}}</td>
+                <td>{{data.created_at}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+    </div>
 </div>
 {% endblock %}

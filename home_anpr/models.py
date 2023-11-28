@@ -3,12 +3,15 @@ from django.db import models
 
 # Create your models here.
 class Tenant(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     phone_number = models.CharField(max_length=15)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # class Meta:
+    #     unique_together = ['week', 'description', 'year']
+        
     def __str__(self) -> str:
         return self.name
     
@@ -25,7 +28,7 @@ class House(models.Model):
 class Vehicle(models.Model):
     plate_number =  models.CharField(max_length=20, unique=True, null=False)
     vehicle_name = models.CharField(max_length=100)
-    model = models.CharField(max_length=100)
+    vehicle_color = models.CharField(max_length=100)
 
     tenant = models.ForeignKey(Tenant, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -1,5 +1,6 @@
 import os
 from pprint import pprint
+import requests
 
 import cv2
 import easyocr
@@ -31,7 +32,8 @@ class YoloModel:
 
         return obj
 
-    def predict(self, counts):
+    # def predict(self, counts):
+    def predict(self):
         plate_dict = {}
         img_names = os.path.basename(self.img_source)
         image = cv2.imread(self.img_source)
@@ -84,4 +86,27 @@ class YoloModel:
                 pass
             # '''Display'''
             # cv2.imwrite(f"datasets/output/img_{counts}.jpg", new_img)
+
+def get_one_record(vehicle_id):
+    url = f"http://127.0.0.1:8000/drf/vehicle/{vehicle_id}"
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            member = response.json()
+            print(member)
+    except Exception as e:
+        print(e)
+
+def main():
+    img = "C:\\Users\\paulm\\OneDrive\\Desktop\\myrepos\\PROJECTS\\ML_AI\\LPSS\\datasets\\plates\\vehicle9.jpeg"
+    weight = "C:\\Users\\paulm\\OneDrive\\Desktop\\myrepos\\PROJECTS\\BACKEND_DB\\ANPR_DJANGO\\home_anpr\\assets\\anpr_v2.pt"
+    run = YoloModel(img_source=img, 
+              weights_path=weight)
+    one = run.predict()
+
+    get_one_record(one)
+
+if __name__ == "__main__":
+    main()
+
             

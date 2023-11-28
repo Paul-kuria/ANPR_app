@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: ''
+  version: 0.0.0
+paths:
+  /drf/:
+    get:
+      operationId: drf_retrieve
+      tags:
+      - drf
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /drf/bulk-register/:
+    post:
+      operationId: drf_bulk_register_create
+      tags:
+      - drf
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /drf/residents-list/:
+    get:
+      operationId: drf_residents_list_retrieve
+      tags:
+      - drf
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /drf/tenant-create/:
+    post:
+      operationId: drf_tenant_create_create
+      tags:
+      - drf
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /drf/vehicle-create/:
+    post:
+      operationId: drf_vehicle_create_create
+      tags:
+      - drf
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /drf/vehicles-list/:
+    get:
+      operationId: drf_vehicles_list_retrieve
+      tags:
+      - drf
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

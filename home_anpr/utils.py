@@ -1,11 +1,11 @@
 import os
 from pprint import pprint
-import requests
 
 import cv2
 import easyocr
 import numpy as np
 import pytesseract
+import requests
 import supervision as sv
 from ultralytics import YOLO
 
@@ -87,6 +87,7 @@ class YoloModel:
             # '''Display'''
             # cv2.imwrite(f"datasets/output/img_{counts}.jpg", new_img)
 
+
 def get_one_record(vehicle_id):
     url = f"http://127.0.0.1:8000/drf/vehicle/{vehicle_id}"
     try:
@@ -97,16 +98,15 @@ def get_one_record(vehicle_id):
     except Exception as e:
         print(e)
 
+
 def main():
     img = "C:\\Users\\paulm\\OneDrive\\Desktop\\myrepos\\PROJECTS\\ML_AI\\LPSS\\datasets\\plates\\vehicle9.jpeg"
     weight = "C:\\Users\\paulm\\OneDrive\\Desktop\\myrepos\\PROJECTS\\BACKEND_DB\\ANPR_DJANGO\\home_anpr\\assets\\anpr_v2.pt"
-    run = YoloModel(img_source=img, 
-              weights_path=weight)
+    run = YoloModel(img_source=img, weights_path=weight)
     one = run.predict()
 
     get_one_record(one)
 
+
 if __name__ == "__main__":
     main()
-
-            

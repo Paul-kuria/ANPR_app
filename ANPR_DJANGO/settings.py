@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
-import dotenv 
-import os 
+
+import dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,16 +43,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
     # Apps
     "home_anpr.apps.HomeAnprConfig",
-
     # Rest Frameworks
     "drf_anpr.apps.DrfAnprConfig",
-
     # Django libraries
     "rest_framework",
+    "drf_yasg",
+    "drf_spectacular",
     "storages",
+   
 ]
 
 MIDDLEWARE = [
@@ -69,7 +70,7 @@ ROOT_URLCONF = "ANPR_DJANGO.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ['templates'],
+        "DIRS": ["templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -89,13 +90,15 @@ WSGI_APPLICATION = "ANPR_DJANGO.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ["DATABASE_NAME"],
-        'USER': os.environ["DB_USERNAME"],
-        'PASSWORD':  os.environ["PASSWORD"],
-        'HOST': os.environ["HOSTNAME"],  # Usually 'localhost' or '127.0.0.1' for a local database
-        'PORT': int(os.environ["PORT"]),  # Default PostgreSQL port is 5432
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ["DATABASE_NAME"],
+        "USER": os.environ["DB_USERNAME"],
+        "PASSWORD": os.environ["PASSWORD"],
+        "HOST": os.environ[
+            "HOSTNAME"
+        ],  # Usually 'localhost' or '127.0.0.1' for a local database
+        "PORT": int(os.environ["PORT"]),  # Default PostgreSQL port is 5432
     }
 }
 
@@ -136,9 +139,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 MEDIA_URL = "/images/"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_ROOT = BASE_DIR / "static/images"
 
@@ -146,3 +147,12 @@ MEDIA_ROOT = BASE_DIR / "static/images"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# API DOCUMENTATION
+REST_FRAMEWORK = {
+    # 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+SPECTACULAR_SEETTINGS = {
+    "TITLE": "Django DRF ANPR",
+}

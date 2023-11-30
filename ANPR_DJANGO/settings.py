@@ -49,8 +49,10 @@ INSTALLED_APPS = [
     "drf_anpr.apps.DrfAnprConfig",
     # Django libraries
     "rest_framework",
-    "storages",
     "drf_yasg",
+    "drf_spectacular",
+    "storages",
+   
 ]
 
 MIDDLEWARE = [
@@ -147,10 +149,10 @@ MEDIA_ROOT = BASE_DIR / "static/images"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # API DOCUMENTATION
-# REST_FRAMEWORK = {
-#     # 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-#     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-# }
-# SPECTACULAR_SEETTINGS = {
-#     "TITLE": "Django DRF ANPR",
-# }
+REST_FRAMEWORK = {
+    # 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+SPECTACULAR_SEETTINGS = {
+    "TITLE": "Django DRF ANPR",
+}

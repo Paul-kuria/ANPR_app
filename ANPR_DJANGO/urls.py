@@ -17,13 +17,11 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
-
 # DRF YASG
 from rest_framework import permissions
-from rest_framework.schemas import get_schema_view
 
 ...
 
@@ -45,11 +43,7 @@ urlpatterns = [
     path("", include("home_anpr.urls")),
     # DRF
     path("drf/", include("drf_anpr.urls")),
-    path(
-        "swagger/",
-        schema_view.with_ui("swagger", cache_timeout=0),
-        name="schema-swagger-ui",
-    ),
+    path("swagger/",schema_view.with_ui("swagger", cache_timeout=0),name="schema-swagger-ui",),
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 ]
 
